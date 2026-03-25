@@ -32,9 +32,13 @@ public class SecurityConfig {
 						.loginProcessingUrl("/admin/login")
 						.usernameParameter("email")
 						.passwordParameter("password")
-						.defaultSuccessUrl("/admin/contacts", true)
+						.defaultSuccessUrl("/admin/top", true)
 						.failureUrl("/admin/signin?error")
-						.permitAll());
+						.permitAll())
+				.logout(logout -> logout
+				                .logoutUrl("/admin/logout")
+				                .logoutSuccessUrl("/admin/signin")
+				            );
 		return http.build();
 	}
 	
