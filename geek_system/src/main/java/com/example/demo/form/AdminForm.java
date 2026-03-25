@@ -5,8 +5,8 @@ import java.io.Serializable;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
-import com.example.demo.dto.AdminDTO;
-import com.example.demo.entity.Admin;
+import main.java.com.example.demo.dto.AdminDTO;
+import main.java.com.example.demo.entity.Admin;
 
 import lombok.Data;
 
@@ -26,6 +26,9 @@ public class AdminForm implements Serializable {
 	@NotBlank(message = "{NotBlank}")
 	@Size(min = 8, max = 16)
 	private String password;
+	
+	@NotBlank(message = "{NotBlank}")
+	private String authority;
 
 	public AdminForm() {
 

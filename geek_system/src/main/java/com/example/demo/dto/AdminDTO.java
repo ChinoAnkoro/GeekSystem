@@ -1,8 +1,8 @@
-package com.example.demo.dto;
+package main.java.com.example.demo.dto;
 
 import java.time.LocalDateTime;
 
-import com.example.demo.entity.Admin;
+import main.java.com.example.demo.entity.Admin;
 
 import lombok.Data;
 
@@ -12,8 +12,10 @@ public class AdminDTO {
 	public String lastName;
 	public String firstName;
 	public String email;
+	public String post;
+	public String authority;
+	public String phone_number;
 	public String password;
-	public LocalDateTime currentSignInAt;
 	public LocalDateTime createdAt;
 	public LocalDateTime updatedAt;
 }

@@ -1,4 +1,4 @@
-package com.example.demo.entity;
+package main.java.com.example.demo.entity;
 
 import java.time.LocalDateTime;
 
@@ -30,12 +30,18 @@ public class Admin {
 
 	@Column(name = "email")
 	private String email;
+	
+	@Column(name = "post")
+	private String post;
+	
+	@Column(name = "authority")
+	private String authority;
+	
+	@Column(name = "phone_number")
+	private String phone_number;
 
 	@Column(name = "password")
 	private String password;
-
-	@Column(name = "current_sign_in_at")
-	private LocalDateTime currentSignInAt;
 
 	@Column(name = "created_at", updatable = false)
 	private LocalDateTime createdAt;

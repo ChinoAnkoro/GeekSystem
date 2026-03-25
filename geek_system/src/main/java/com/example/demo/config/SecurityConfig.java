@@ -9,7 +9,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.SecurityFilterChain;
 
-import com.example.demo.service.AdminDetailServiceImpl;
+import main.java.com.example.demo.service.AdminDetailServiceImpl;
 
 @Configuration
 @EnableWebSecurity
