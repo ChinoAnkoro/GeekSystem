@@ -18,4 +18,8 @@ public class AdminDTO {
 	public String password;
 	public LocalDateTime createdAt;
 	public LocalDateTime updatedAt;
+	
+	public String getFullName() {
+		return lastName + " " + firstName;
+	}
 }

@@ -1,4 +1,4 @@
-package security;
+package main.java.com.example.demo.security;
 
 import java.util.Collections;
 import java.util.Collection;

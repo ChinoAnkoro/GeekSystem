@@ -2,9 +2,9 @@ package main.java.com.example.demo.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.example.demo.repository.AdminRepository;
-import com.example.demo.entity.Admin;
-import com.example.demo.security.AdminUserDetails;
+import main.java.com.example.demo.repository.AdminRepository;
+import main.java.com.example.demo.entity.Admin;
+import main.java.com.example.demo.security.AdminUserDetails;
 
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
