@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>トップ画面</title>
+</head>
+<body>
+	<h1>管理メニュー</h1>
+</body>
+<ul>
+	<li>
+		<a th:href="@{/admin/admins"}>
+			管理者一覧
+		</a>
+	</li>
+	<li>
+		<a th:href="@{/admin/merchandises}">
+			商品一覧
+		</a>
+	</li>
+	<li>
+		<a th:href="@{/admin/categories}">
+			カテゴリ一覧
+		</a>
+	</li>
+	<li>
+		<a href="@{/admin/shopdetail}">
+			店舗詳細
+		</a>
+	</li>
+	<li>
+		<a href="@{/admin/order_histories}">
+			発注履歴
+		</a>
+	</li>
+	<li>
+		<a href="@{/admin/profile}">
+			プロフィール
+		</a>
+	</li>
+</ul>
+</html>
