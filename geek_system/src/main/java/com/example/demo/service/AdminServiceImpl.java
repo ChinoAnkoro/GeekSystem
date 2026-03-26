@@ -1,5 +1,7 @@
 package main.java.com.example.demo.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -36,7 +38,7 @@ public class AdminServiceImpl implements AdminService {
 		admin.setFirstName(dto.getFirstName());
 		admin.setEmail(dto.getEmail());
 		admin.setPost(dto.getPost());
-		admin.setAuthority(dto.getAuthority());
+		admin.setAuthority(String.join(",", dto.getAuthority()));
 		admin.setPhone_number(dto.getPhone_number());
 		return admin;
 	}
@@ -48,8 +50,27 @@ public class AdminServiceImpl implements AdminService {
 		dto.setFirstName(admin.getFirstName());
 		dto.setEmail(admin.getEmail());
 		dto.setPost(admin.getPost());
-		dto.setAuthority(admin.getAuthority());
+		dto.setAuthority(List.of(admin.getAuthority().split(",")));
 		dto.setPhone_number(admin.getPhone_number());
 		return dto;
+	}
+	
+	@Override
+	public void updateProfile(
+	        String email,
+	        AdminDTO dto) {
+
+	    Admin admin =
+	        adminRepository
+	        .findByEmail(email)
+	        .orElseThrow();
+
+	    admin.setLastName(dto.getLastName());
+	    admin.setFirstName(dto.getFirstName());
+	    admin.setPost(dto.getPost());
+	    admin.setAuthority(String.join(",", dto.getAuthority()));
+	    admin.setPhone_number(dto.getPhone_number());
+
+	    adminRepository.save(admin);
 	}
 }

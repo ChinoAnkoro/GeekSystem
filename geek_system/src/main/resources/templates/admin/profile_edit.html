@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<h1>プロフィール編集</h1>
+
+<form th:action="@{/admin/profile/update}"
+      th:object="${form}"
+      method="post">
+
+姓
+<input th:field="*{lastName}">
+<br>
+
+名
+<input th:field="*{firstName}">
+<br>
+
+メール
+<input th:field="*{email}" readonly>
+<br>
+
+役職
+<select th:field="*{post}">
+    <option value="">選択してください</option>
+    <option th:each="p : ${postList}"
+            th:value="${p}"
+            th:text="${p}">
+    </option>
+</select>
+<br>
+
+権限
+<input th:field="*{authority}">
+<br>
+
+電話番号
+<input th:field="*{phone_number}">
+<br>
+
+<button>更新</button>
+
+</form>
+
+<a th:href="@{/admin/profile}">
+戻る
+</a>
+
+</body>
+</html>

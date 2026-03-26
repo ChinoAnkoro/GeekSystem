@@ -16,10 +16,13 @@
 	<span th:text="${profile.post}"></span>
 	<br>
 	権限：
-	<span th:text="${profile.authority}"></span>
+	<span th:text="${#strings.arrayJoin(profile.authorities, ', ')}"></span>
 	<br>
 	電話番号：
 	<span th:text="${profile.phone_number}"></span>
 	<br>
+	<a th:href="@{/admin/profile/edit}">
+	編集
+	</a>
 </body>
 </html>

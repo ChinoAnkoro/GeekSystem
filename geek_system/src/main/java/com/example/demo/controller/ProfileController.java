@@ -1,5 +1,7 @@
 package main.java.com.example.demo.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -28,6 +30,12 @@ public class ProfileController {
 		AdminDTO dto = service.getProfile(email);
 		
 		model.addAttribute("form",dto);
+		
+		//役職
+	    model.addAttribute("postList", List.of("店長", "副店長", "スタッフ"));
+
+	    //権限
+	    model.addAttribute("authorityList",List.of("管理者", "一般"));
 		
 		return "admin/profile_edit";
 	}
