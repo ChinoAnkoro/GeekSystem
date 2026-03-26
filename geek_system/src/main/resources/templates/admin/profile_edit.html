@@ -1,57 +1,74 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <body>
 
-<h1>プロフィール編集</h1>
+	<h1>プロフィール編集</h1>
 
-<form th:action="@{/admin/profile/update}"
-      th:object="${form}"
-      method="post">
+	<div th:if="${#fields.hasErrors('*')}">
+		<ul>
+			<li th:each="e : ${#fields.errors('*')}" th:text="${e}"></li>
+		</ul>
+	</div>
+	<form th:action="@{/admin/profile/update}" th:object="${form}" method="post">
 
-姓
-<input th:field="*{lastName}">
-<br>
+		<div>
+			<label>姓</label><br>
+			<input type="text" th:field="*{lastName}">
+			<div th:errors="*{lastName}"></div>
+		</div>
 
-名
-<input th:field="*{firstName}">
-<br>
+		<div>
+			<label>名</label><br>
+			<input type="text" th:field="*{firstName}">
+			<div th:errors="*{firstName}"></div>
+		</div>
 
-メール
-<input th:field="*{email}" readonly>
-<br>
+		<div>
+			<label>メール</label><br>
+			<input type="text" th:field="*{email}" readonly>
+			<div th:errors="*{email}"></div>
+		</div>
 
-役職
-<select th:field="*{post}">
-    <option value="">選択してください</option>
-    <option th:each="p : ${postList}"
-            th:value="${p}"
-            th:text="${p}">
-    </option>
-</select>
-<br>
+		<div>
+			<label>役職</label><br>
+			<select th:field="*{post}">
+				<option value="">選択してください</option>
+				<option th:each="p : ${postList}" th:value="${p}" th:text="${p}">
+				</option>
+			</select>
+			<div th:errors="*{post}"></div>
+		</div>
 
-権限
-<div th:each="a : ${authorityList}">
-    <label>
-        <input type="checkbox"
-               th:value="${a}"
-               th:field="*{authorities}">
-        <span th:text="${a}"></span>
-    </label>
-</div>
-<br>
+		<div>
+			<label>権限</label><br>
+			<div th:each="a : ${authorityList}">
+				<label>
+					<input type="checkbox" th:field="*{authority}" th:value="${a}">
+					<span th:text="${a}"></span>
+				</label>
+			</div>
+			<div th:errors="*{authority}"></div>
+		</div>
 
-電話番号
-<input th:field="*{phone_number}">
-<br>
+		<div>
+			<label>電話番号</label><br>
+			<input type="text" th:field="*{phone_number}">
+			<div th:errors="*{phone_number}"></div>
+		</div>
 
-<button>更新</button>
+		<br>
 
-</form>
+		<button type="submit">更新</button>
 
-<a th:href="@{/admin/profile}">
-戻る
-</a>
+	</form>
+
+	<br>
+
+	<a th:href="@{/admin/profile}">
+		戻る
+	</a>
 
 </body>
+
 </html>

@@ -1,4 +1,4 @@
-package main.java.com.example.demo.service;
+package com.example.demo.service;
 
 import java.util.List;
 
@@ -6,9 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import main.java.com.example.demo.entity.Admin;
-import main.java.com.example.demo.dto.AdminDTO;
-import main.java.com.example.demo.repository.AdminRepository;
+import com.example.demo.dto.AdminDTO;
+import com.example.demo.entity.Admin;
+import com.example.demo.repository.AdminRepository;
 
 @Service
 public class AdminServiceImpl implements AdminService {
@@ -25,7 +25,7 @@ public class AdminServiceImpl implements AdminService {
 		admin.setPassword(passwordEncoder.encode(dto.getPassword()));
 		adminRepository.save(admin);
 	}
-	
+
 	@Override
 	public AdminDTO getProfile(String email) {
 		Admin admin = adminRepository.findByEmail(email).orElseThrow();
@@ -42,10 +42,10 @@ public class AdminServiceImpl implements AdminService {
 		admin.setPhone_number(dto.getPhone_number());
 		return admin;
 	}
-	
+
 	private AdminDTO entityToDto(Admin admin) {
 		AdminDTO dto = new AdminDTO();
-		
+
 		dto.setLastName(admin.getLastName());
 		dto.setFirstName(admin.getFirstName());
 		dto.setEmail(admin.getEmail());
@@ -54,23 +54,22 @@ public class AdminServiceImpl implements AdminService {
 		dto.setPhone_number(admin.getPhone_number());
 		return dto;
 	}
-	
+
 	@Override
 	public void updateProfile(
-	        String email,
-	        AdminDTO dto) {
+			String email,
+			AdminDTO dto) {
 
-	    Admin admin =
-	        adminRepository
-	        .findByEmail(email)
-	        .orElseThrow();
+		Admin admin = adminRepository
+				.findByEmail(email)
+				.orElseThrow();
 
-	    admin.setLastName(dto.getLastName());
-	    admin.setFirstName(dto.getFirstName());
-	    admin.setPost(dto.getPost());
-	    admin.setAuthority(String.join(",", dto.getAuthority()));
-	    admin.setPhone_number(dto.getPhone_number());
+		admin.setLastName(dto.getLastName());
+		admin.setFirstName(dto.getFirstName());
+		admin.setPost(dto.getPost());
+		admin.setAuthority(String.join(",", dto.getAuthority()));
+		admin.setPhone_number(dto.getPhone_number());
 
-	    adminRepository.save(admin);
+		adminRepository.save(admin);
 	}
 }

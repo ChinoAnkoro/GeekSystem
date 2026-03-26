@@ -1,4 +1,4 @@
-package main.java.com.example.demo.config;
+package com.example.demo.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -9,7 +9,8 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.SecurityFilterChain;
 
-import main.java.com.example.demo.service.AdminDetailServiceImpl;
+import com.example.demo.service.AdminDetailServiceImpl;
+
 
 @Configuration
 @EnableWebSecurity

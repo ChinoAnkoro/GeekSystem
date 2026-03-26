@@ -1,13 +1,14 @@
-package main.java.com.example.demo.security;
+package com.example.demo.security;
 
 import java.util.Collections;
 import java.util.Collection;
 
 import org.springframework.security.core.userdetails.UserDetails;
+
+import com.example.demo.entity.Admin;
+
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-
-import main.java.com.example.demo.entity.Admin;
 
 public class AdminUserDetails implements UserDetails{
 	private final Admin admin;
