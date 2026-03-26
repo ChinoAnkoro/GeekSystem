@@ -31,7 +31,14 @@
 <br>
 
 権限
-<input th:field="*{authority}">
+<div th:each="a : ${authorityList}">
+    <label>
+        <input type="checkbox"
+               th:value="${a}"
+               th:field="*{authorities}">
+        <span th:text="${a}"></span>
+    </label>
+</div>
 <br>
 
 電話番号
