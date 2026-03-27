@@ -2,15 +2,11 @@ package com.example.demo.service;
 
 import java.util.List;
 
-import jakarta.transaction.Transactional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.dto.MerchandiseDTO;
 import com.example.demo.dto.MerchandiseDetailDTO;
-import com.example.demo.dto.OrderItemDTO;
-import com.example.demo.entity.MerchandiseShop;
 import com.example.demo.repository.MerchandiseRepository;
 
 @Service
