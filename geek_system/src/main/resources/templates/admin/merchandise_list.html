@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>商品一覧</title>
+</head>
+
+<body>
+	<h1>商品一覧</h1>
+
+	<form method="get" th:action="@{/merchandise/list}">
+
+		商品名：
+		<input type="text" name="name" th:value="${name}">
+
+		大カテゴリ：
+		<select name="bigCategoryId">
+			<option value="">--選択--</option>
+			<option th:each="c : ${bigCategoryList}" th:value="${c.id}" th:text="${c.name}"
+				th:selected="${c.id == bigCategoryId}">
+			</option>
+		</select>
+
+		中カテゴリ：
+		<select name="middleCategoryId">
+			<option value="">--選択--</option>
+			<option th:each="c : ${middleCategoryList}" th:value="${c.id}" th:text="${c.name}"
+				th:selected="${c.id == middleCategoryId}">
+			</option>
+		</select>
+
+		小カテゴリ：
+		<select name="smallCategoryId">
+			<option value="">--選択--</option>
+			<option th:each="c : ${smallCategoryList}" th:value="${c.id}" th:text="${c.name}"
+				th:selected="${c.id == smallCategoryId}">
+			</option>
+		</select>
+
+		<button type="submit">検索</button>
+	</form>
+
+	<br>
+
+	<table border="1">
+		<tr>
+			<th>商品名</th>
+			<th>メーカー</th>
+			<th>大カテゴリ</th>
+			<th>中カテゴリ</th>
+			<th>小カテゴリ</th>
+			<th>価格</th>
+			<th>在庫</th>
+			<th>発注</th>
+			<th>詳細</th>
+		</tr>
+
+		<tr th:each="item : ${merchandiseList}">
+			<td th:text="${item.name}"></td>
+			<td th:text="${item.makerName}"></td>
+			<td th:text="${item.bigCategoryName}"></td>
+			<td th:text="${item.middleCategoryName}"></td>
+			<td th:text="${item.smallCategoryName}"></td>
+			<td th:text="${item.price}"></td>
+			<td th:text="${item.stock}"></td>
+
+			<td>
+				<form th:action="@{/order}" method="post">
+					<input type="hidden" name="id" th:value="${item.id}">
+					<button type="submit">発注</button>
+				</form>
+			</td>
+
+			<td>
+				<a th:href="@{/merchandise/detail(id=${item.id})}">
+					詳細
+				</a>
+			</td>
+		</tr>
+	</table>
+</body>
+
+</html>
