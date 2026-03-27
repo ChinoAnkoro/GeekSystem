@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import com.example.demo.dto.MerchandiseDTO;
 import com.example.demo.dto.MerchandiseDetailDTO;
+import com.example.demo.dto.OrderItemDTO;
 import com.example.demo.entity.Merchandise;
 
 public interface MerchandiseRepository extends JpaRepository<Merchandise, Integer> {
@@ -88,4 +89,17 @@ public interface MerchandiseRepository extends JpaRepository<Merchandise, Intege
 			WHERE m.id = :id
 			""")
 	MerchandiseDetailDTO findDetailById(Integer id);
+	
+	@Query("""
+			SELECT new com.example.demo.dto.OrderDTO(
+			    m.id,
+			    m.image,
+			    ms.stock,
+			    ms.salesPrice,
+			    0
+			)
+			FROM Merchandise m
+			JOIN MerchandiseShop ms ON ms.merchandiseId = m.id
+			""")
+			List<OrderItemDTO> findOrderItems();
 }
