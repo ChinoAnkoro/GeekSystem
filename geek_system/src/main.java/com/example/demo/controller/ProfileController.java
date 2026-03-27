@@ -1,7 +1,5 @@
 package com.example.demo.controller;
 
-import java.util.List;
-
 import jakarta.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +7,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -21,15 +20,17 @@ public class ProfileController {
 	@Autowired
 	private AdminService service;
 	// 表示画面
+	@GetMapping("/admin/profile")
 	public String profile(Authentication auth, Model model) {
 		String email = auth.getName();
 		
 		AdminDTO dto = service.getProfile(email);
 		model.addAttribute("profile",dto);
-		return "admin/email";
+		return "admin/profile";
 	}
 	
 	// 編集画面
+	@GetMapping("/admin/profile/edit")
 	public String edit(Authentication auth, Model model) {
 		String email = auth.getName();
 		AdminDTO dto = service.getProfile(email);
@@ -52,7 +53,7 @@ BindingResult result,Authentication auth,Model model) {
 		if(result.hasErrors()) {
 			model.addAttribute("postList", AdminConstant.POST_LIST);
 			model.addAttribute("authorityList", AdminConstant.AUTHORITY_LIST);
-			return "admin/progile_edit";
+			return "admin/profile_edit";
 		}
 		String email = auth.getName();
 		service.updateProfile(email, dto);
