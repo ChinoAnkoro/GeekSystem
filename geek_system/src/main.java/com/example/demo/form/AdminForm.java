@@ -1,12 +1,11 @@
-package main.java.com.example.demo.form;
+package com.example.demo.form;
 
 import java.io.Serializable;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
-import main.java.com.example.demo.dto.AdminDTO;
-import main.java.com.example.demo.entity.Admin;
+import com.example.demo.dto.AdminDTO;
 
 import lombok.Data;
 

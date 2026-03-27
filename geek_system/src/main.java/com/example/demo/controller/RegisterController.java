@@ -1,4 +1,4 @@
-package main.java.com.example.demo.controller;
+package com.example.demo.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import main.java.com.example.demo.form.AdminForm;
-import main.java.com.example.demo.service.AdminService;
-import main.java.com.example.demo.dto.AdminDTO;
+import com.example.demo.dto.AdminDTO;
+import com.example.demo.form.AdminForm;
+import com.example.demo.service.AdminService;
 
 @Controller
 public class RegisterController {
