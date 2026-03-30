@@ -5,25 +5,22 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
-import com.example.demo.dto.OrderHistoryDTO;
 import com.example.demo.entity.OrderHistory;
 
 public interface OrderHistoryRepository extends JpaRepository<OrderHistory, Integer> {
-	@Query("""
-			SELECT new com.example.demo.dto.OrderHistoryDTO(
-			m.name,
-			a.name,
-			s.name,
-			d.quantity,
-			d.price * d,quantity,
-			o.orderDate
-			)
-			FROM OrderHistory o
-			JOIN o.OrderDetails d
-			JOIN d.merchandise m
-			JOIN o.admin a
-			JOIN o.shop s
-			WHERE o.shopId = :shopId
-			""")
-	List<OrderHistoryDTO> findByShopId(Integer shopId);
+	@Query(value = """
+			SELECT
+			m.name AS merchandiseName,
+			a.name AS adminName,
+			s.name AS shopName,
+			o.number_of_order AS quantity,
+			o.total_amount AS totalAmount,
+			o.created_at AS orderDate
+			FROM order_histories o
+			JOIN merchandises m ON o.merchandise_id = m.id
+			JOIN admins a ON o.admin_id = a.id
+			JOIN shops s ON o.shop_id = s.id
+			WHERE o.shop_id = :shop_id
+			""", nativeQuery = true)
+	List<Object[]> findHistoryList(Integer shopId);
 }
