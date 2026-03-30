@@ -6,6 +6,7 @@
 </head>
 
 <body>
+	<div th:replace="common/header :: header"></div>
 
 	<h1>商品詳細</h1>
 
@@ -32,7 +33,7 @@
 		</tr>
 		<tr>
 			<th>価格</th>
-			<td th:text="${item.price}"></td>
+			<td th:text="${#numbers.formatInteger(item.price,3,'COMMA')} + ' 円'"></td>
 		</tr>
 		<tr>
 			<th>在庫</th>
@@ -46,11 +47,10 @@
 
 	<br>
 
-	<img th:src="@{${item.image}}" width="200">
+	<img th:if="${item.image != null}" th:src="@{${item.image}}" width="200">
+	<span th:if="${item.image == null}">画像なし</span>
 
 	<br><br>
-
-	<a th:href="@{/merchandise/list}">一覧に戻る</a>
 
 </body>
 

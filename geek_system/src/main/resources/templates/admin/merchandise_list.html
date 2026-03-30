@@ -6,7 +6,9 @@
 </head>
 
 <body>
+	<div th:replace="common/header :: header"></div>
 	<h1>商品一覧</h1>
+	<button onclick="history.back()" class="btn">戻る</button>
 
 	<form method="get" th:action="@{/merchandise/list}">
 
