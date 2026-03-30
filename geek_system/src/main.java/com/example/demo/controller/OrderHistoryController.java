@@ -14,7 +14,7 @@ import com.example.demo.service.OrderHistoryService;
 
 @Controller
 @RequestMapping("/order_history")
-public class OrderHystoryController {
+public class OrderHistoryController {
 	@Autowired
 	private OrderHistoryService service;
 
@@ -22,7 +22,7 @@ public class OrderHystoryController {
 	public String list(Model model, Authentication auth) {
 		Integer shopId = 1;
 		List<OrderHistory> list = service.getOrderHistories(shopId);
-		model.addAttribute("OrderHistories", list);
+		model.addAttribute("historyList", list);
 		return "order_history/list";
 	}
 }
