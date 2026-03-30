@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import com.example.demo.entity.OrderHistory;
+import com.example.demo.view.OrderHistoryView;
 
 public interface OrderHistoryRepository extends JpaRepository<OrderHistory, Integer> {
 	@Query(value = """
@@ -22,5 +23,5 @@ public interface OrderHistoryRepository extends JpaRepository<OrderHistory, Inte
 			JOIN shops s ON o.shop_id = s.id
 			WHERE o.shop_id = :shop_id
 			""", nativeQuery = true)
-	List<Object[]> findHistoryList(Integer shopId);
+	List<OrderHistoryView> findHistoryList(Integer shopId);
 }
