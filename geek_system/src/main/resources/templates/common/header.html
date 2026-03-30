@@ -6,15 +6,41 @@
 
     <div class="header">
 
-        <!-- 戻るボタン -->
-        <button onclick="history.back()" class="btn">← 戻る</button>
+        <!-- 左側 -->
+        <div class="header-left">
+            <button onclick="goBack()" class="btn">← 戻る</button>
+            <span class="header-title">GeekSystem</span>
+        </div>
 
-        <!-- タイトル or ロゴ -->
-        <span class="header-title">管理システム</span>
+        <!-- 右側 -->
+        <div class="header-right">
+
+            <!-- ログインユーザー -->
+            <span class="user">
+                👤 <span th:text="${#authentication.name}"></span>
+            </span>
+
+            <!-- ログアウト -->
+            <form th:action="@{/logout}" method="post" style="display:inline;">
+                <button type="submit" class="btn logout-btn">ログアウト</button>
+            </form>
+
+        </div>
 
     </div>
 
 </div>
+
+<!-- 戻る制御 -->
+<script>
+function goBack() {
+    if (document.referrer) {
+        history.back();
+    } else {
+        location.href = '/merchandise/list';
+    }
+}
+</script>
 
 </body>
 </html>
