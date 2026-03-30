@@ -24,7 +24,7 @@
 			<td th:text="${item.adminName}"></td>
 			<td th:text="${item.shopName}"></td>
 			<td th:text="${item.quantity}"></td>
-			<td th:text="${item.totalAmount} + ' 円'"></td>
+			<td th:text="${#numbers.formatInteger(item.totalAmount, 3, 'COMMA')} + ' 円'"></td>
 			<td th:text="${#temporals.format(item.orderDate, 'yyyy/MM/dd HH:mm')}"></td>
 		</tr>
 	</table>

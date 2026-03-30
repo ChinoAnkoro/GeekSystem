@@ -1,10 +1,15 @@
 package com.example.demo.dto;
 
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
+
 public class OrderItemDTO {
 	private Integer merchandiseId;
 	private String image;
 	private Integer stock;
 	private Integer price;
+	@NotNull(message = "数量を入力してください")
+    @Min(value = 1, message = "1以上を入力してください")
 	private Integer quantity;
 
 	public OrderItemDTO(Integer merchandiseId, String image,
