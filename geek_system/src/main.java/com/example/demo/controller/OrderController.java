@@ -38,7 +38,7 @@ public class OrderController {
         return "redirect:/merchandise/list";
     }
     
-    @PostMapping("/execute")
+    @PostMapping("")
     public String order(
             @Valid @ModelAttribute OrderForm form,
             BindingResult result,
