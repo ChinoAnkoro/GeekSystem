@@ -17,7 +17,7 @@ public class OrderHistoryService {
 		this.repository = repository;
 	}
 	
-	public List<OrderHistory> getOrderHistories(Integer ShopId){
-		return repository.findByShopId(ShopId);
+	public List<OrderHistory> getOrderHistories(Integer shopId){
+		return repository.findByShopId(shopId);
 	}
 }

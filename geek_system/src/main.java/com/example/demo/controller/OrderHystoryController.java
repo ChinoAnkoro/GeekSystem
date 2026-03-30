@@ -20,8 +20,8 @@ public class OrderHystoryController {
 
 	@GetMapping("")
 	public String list(Model model, Authentication auth) {
-		Integer ShopId = 1;
-		List<OrderHistory> list = service.getOrderHistories(ShopId);
+		Integer shopId = 1;
+		List<OrderHistory> list = service.getOrderHistories(shopId);
 		model.addAttribute("OrderHistories", list);
 		return "order_history/list";
 	}
