@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<div th:fragment="header">
+
+    <div class="header">
+
+        <!-- 左側 -->
+        <div class="header-left">
+            <button onclick="goBack()" class="btn">戻る</button>
+            <span class="header-title">GeekSystem</span>
+        </div>
+
+        <!-- 右側 -->
+        <div class="header-right">
+
+            <!-- ログインユーザー -->
+            <span class="user">
+                👤 <span th:text="${#authentication.name}"></span>
+            </span>
+
+            <!-- ログアウト -->
+            <form th:action="@{/logout}" method="post" style="display:inline;">
+                <button type="submit" class="btn logout-btn">ログアウト</button>
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- 戻る制御 -->
+<script>
+function goBack() {
+    if (document.referrer) {
+        history.back();
+    } else {
+        location.href = '/merchandise/list';
+    }
+}
+</script>
+
+</body>
+</html>

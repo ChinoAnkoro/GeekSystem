@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>商品発注</title>
+</head>
+
+<body>
+	<div th:replace="common/header :: header"></div>
+	<h1>商品発注</h1>
+
+	<form th:action="@{/merchandise/order}" method="post">
+
+		<table border="1">
+			<tr>
+				<th>商品画像</th>
+				<th>在庫数</th>
+				<th>発注数</th>
+				<th>小計</th>
+			</tr>
+
+			<tr th:each="item, stat : ${form.items}">
+
+				<!-- 画像 -->
+				<td>
+					<img th:src="@{${item.image}}" width="80">
+				</td>
+
+				<!-- 在庫 -->
+				<td th:text="${item.stock}"></td>
+
+				<!-- 発注数 -->
+				<td>
+					<input type="number" th:field="*{items[__${stat.index}__].quantity}">
+
+					<div style="color:red" th:if="${#fields.hasErrors('items[' + ${stat.index} + '].quantity')}"
+						th:errors="*{items[__${stat.index}__].quantity}">
+					</div>
+				</td>
+
+				<!-- 小計 -->
+				<td>
+					<span class="subtotal">0</span>
+				</td>
+
+				<!-- hidden -->
+				<input type="hidden" th:name="items[__${stat.index}__].merchandiseId" th:value="${item.merchandiseId}">
+
+				<input type="hidden" th:name="items[__${stat.index}__].price" th:value="${item.price}">
+			</tr>
+		</table>
+
+		<br>
+
+		<!-- 合計 -->
+		<div>
+			合計数量：<span id="totalQty">0</span><br>
+			合計金額：<span id="totalPrice">0</span>円
+		</div>
+
+		<br>
+
+		<button type="submit">発注</button>
+
+	</form>
+
+	<script>
+		function calcSubtotal(input) {
+
+			const row = input.closest("tr");
+			const price = row.querySelector('input[name$=".price"]').value;
+
+			const qty = input.value || 0;
+			const subtotal = qty * price;
+
+			row.querySelector(".subtotal").innerText = subtotal;
+
+			calcTotal();
+		}
+
+		function calcTotal() {
+			let totalQty = 0;
+			let totalPrice = 0;
+
+			document.querySelectorAll("tr").forEach(row => {
+				const qtyInput = row.querySelector("input[type=number]");
+				const subtotalEl = row.querySelector(".subtotal");
+
+				if (qtyInput && subtotalEl) {
+					const qty = parseInt(qtyInput.value) || 0;
+					const subtotal = parseInt(subtotalEl.innerText) || 0;
+
+					totalQty += qty;
+					totalPrice += subtotal;
+				}
+			});
+
+			document.getElementById("totalQty").innerText = totalQty;
+			document.getElementById("totalPrice").innerText = totalPrice;
+		}
+	</script>
+
+</body>
+
+</html>

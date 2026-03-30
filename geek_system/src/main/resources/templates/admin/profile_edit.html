@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <body>
-
+	<div th:replace="common/header :: header"></div>
 	<h1>プロフィール編集</h1>
 
 	<div th:if="${#fields.hasErrors('*')}">
@@ -64,10 +64,6 @@
 	</form>
 
 	<br>
-
-	<a th:href="@{/admin/profile}">
-		戻る
-	</a>
 
 </body>
 

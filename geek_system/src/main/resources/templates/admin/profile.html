@@ -1,28 +1,53 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-<meta charset="UTF-8">
-<title>プロフィール</title>
+	<meta charset="UTF-8">
+	<title>プロフィール</title>
+	<link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
+
 <body>
-	<h1>プロフィール</h1>
-	名前：
-	<span th:text="${profile.lastName + ' ' + profile.firstName}"></span>
-	<br>
-	メール：
-	<span th:text="${profile.email}"></span>
-	<br>
-	役職：
-	<span th:text="${profile.post}"></span>
-	<br>
-	権限：
-	<span th:text="${#strings.arrayJoin(profile.authorities, ', ')}"></span>
-	<br>
-	電話番号：
-	<span th:text="${profile.phone_number}"></span>
-	<br>
-	<a th:href="@{/admin/profile/edit}">
-	編集
-	</a>
+	<div th:replace="common/header :: header"></div>
+	<div class="container">
+
+		<h1 class="title">プロフィール</h1>
+
+		<div class="card">
+
+			<div class="row">
+				<label>名前</label>
+				<span th:text="${profile.lastName + ' ' + profile.firstName}"></span>
+			</div>
+
+			<div class="row">
+				<label>メール</label>
+				<span th:text="${profile.email}"></span>
+			</div>
+
+			<div class="row">
+				<label>役職</label>
+				<span th:text="${profile.post}"></span>
+			</div>
+
+			<div class="row">
+				<label>権限</label>
+				<span th:text="${#strings.arrayJoin(profile.authorities, ', ')}"></span>
+			</div>
+
+			<div class="row">
+				<label>電話番号</label>
+				<span th:text="${profile.phoneNumber}"></span>
+			</div>
+
+		</div>
+
+		<br>
+
+		<a th:href="@{/admin/profile/edit}" class="btn">編集</a>
+
+	</div>
+
 </body>
+
 </html>
